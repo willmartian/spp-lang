@@ -1,0 +1,57 @@
+{
+  "$comment": "The Gherkin around Spec++'s code: comments, keywords, tags, tables, doc strings. The language server's semantic tokens mark which words are code.",
+  "name": "Spec++",
+  "scopeName": "source.spp",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#docString" },
+    { "include": "#structure" },
+    { "include": "#tags" },
+    { "include": "#table" },
+    { "include": "#step" },
+    { "include": "#define" },
+    { "include": "#string" }
+  ],
+  "repository": {
+    "comment": {
+      "match": "^\\s*#.*$",
+      "name": "comment.line.number-sign.spp"
+    },
+    "docString": {
+      "begin": "^\\s*(\"\"\"|```)",
+      "end": "^\\s*\\1",
+      "name": "string.quoted.docstring.spp"
+    },
+    "structure": {
+      "match": "^\\s*(Feature|Background|Scenario Outline|Scenario Template|Scenario|Example|Examples|Scenarios|Rule):(.*)$",
+      "captures": {
+        "1": { "name": "keyword.control.spp" },
+        "2": { "name": "entity.name.section.spp" }
+      }
+    },
+    "tags": {
+      "match": "(?<=^|\\s)@\\S+",
+      "name": "entity.name.tag.spp"
+    },
+    "table": {
+      "begin": "^\\s*\\|",
+      "end": "$",
+      "beginCaptures": { "0": { "name": "punctuation.separator.table.spp" } },
+      "patterns": [{ "match": "\\|", "name": "punctuation.separator.table.spp" }]
+    },
+    "step": {
+      "begin": "^\\s*(Given|When|Then|And|But|\\*)\\s",
+      "end": "$",
+      "beginCaptures": { "1": { "name": "keyword.other.step.spp" } },
+      "patterns": [{ "include": "#string" }]
+    },
+    "define": {
+      "match": "\\bDefine\\b",
+      "name": "keyword.other.spp"
+    },
+    "string": {
+      "match": "\"(?:[^\"\\\\]|\\\\.)*\"",
+      "name": "string.quoted.double.spp"
+    }
+  }
+}

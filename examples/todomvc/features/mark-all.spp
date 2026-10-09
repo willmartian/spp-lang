@@ -1,0 +1,25 @@
+Feature: Mark all as completed
+
+  Background:
+    Given I Visit "/"
+    And I Add "buy some cheese"
+    And I Add "feed the cat"
+    And I Add "book a doctors appointment"
+
+  Scenario: Marking all as completed
+    When I Check the Toggle-all
+    Then I should See "0 items left"
+
+  Scenario: Clearing the complete state of all
+    When I Check the Toggle-all
+    And I Uncheck the Toggle-all
+    Then I should See "3 items left"
+
+  @fixme
+  Scenario: Toggle-all follows the todos
+    When I Check the Toggle-all
+    Then the Toggle-all should be Checked
+    When I Untick the Todo "buy some cheese"
+    Then the Toggle-all should Not be Checked
+    When I Tick the Todo "buy some cheese"
+    Then the Toggle-all should be Checked

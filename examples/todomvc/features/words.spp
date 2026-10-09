@@ -1,0 +1,27 @@
+# TodoMVC's own words, standing in for the spec's locators and helpers. The spec's
+# createDefaultTodos isn't one: each Background adds its todos itself, since the
+# scenarios name them.
+
+Define: New-todo
+  the Placeholder "What needs to be done?"
+
+Define: Add Text (Name)
+  Fill the New-todo with Name
+  Press "Enter" on the New-todo
+
+# A list item has no accessible name, so this finds nothing yet: see todo.md.
+Define: Todo Text (Name)
+  the Listitem Containing Name
+
+Define: Tick Todo
+  Check the Checkbox "Toggle Todo" Within Todo
+
+Define: Untick Todo
+  Uncheck the Checkbox "Toggle Todo" Within Todo
+
+Define: Toggle-all
+  the Field "Mark all as complete"
+
+# Only the todo being edited shows its textbox.
+Define: Editor
+  the Textbox "Edit"

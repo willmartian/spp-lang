@@ -1,0 +1,7 @@
+node_modules/
+test-results/
+playwright-report/
+.direnv/
+dist/
+.claude/settings.local.json
+.spp-tests/

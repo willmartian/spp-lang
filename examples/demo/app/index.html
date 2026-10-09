@@ -1,0 +1,27 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Sign in · Groceries</title>
+<main>
+  <h1>Sign in</h1>
+  <form novalidate>
+    <p><label>Email <input name="email" type="email"></label></p>
+    <p><label>Password <input name="password" type="password"></label></p>
+    <p id="error" hidden></p>
+    <button type="submit">Sign in</button>
+  </form>
+</main>
+<script>
+  const form = document.querySelector('form')
+  const error = document.getElementById('error')
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const empty = [...form.elements].find((el) => el.name && !el.value)
+    if (empty) return empty.focus()
+    if (form.password.value !== 'hunter2') {
+      error.textContent = 'Wrong email or password'
+      error.hidden = false
+      return
+    }
+    location.href = '/list.html'
+  })
+</script>

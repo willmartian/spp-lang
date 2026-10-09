@@ -1,0 +1,36 @@
+# Every scenario here must fail; @fail makes a pass the failure.
+
+Feature: Things that should fail
+
+  Background:
+    Given I am Signed-in
+
+  @fail
+  Scenario: A typo
+    When I Clik the Button "Add"
+
+  @fail
+  Scenario: Not really gone
+    Given I Add "Bread"
+    Then I should Not See the Cell "Bread"
+
+  @fail
+  Scenario: Wrong heading
+    Then I should See the Heading "Welcome"
+
+  @fail
+  Scenario: No verb
+    When the Button "Add"
+
+  @fail
+  Scenario: Not checked
+    Given I Add "Eggs"
+    Then the Checkbox "Bought" Within the Row Containing "Eggs" should be Checked
+
+  @fail
+  Scenario: Unclosed
+    When I Click the Button "Add
+
+  @fail
+  Scenario: The wrong kind of thing
+    When I Click "Add"

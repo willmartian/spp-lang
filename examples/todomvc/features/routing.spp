@@ -1,0 +1,48 @@
+Feature: Routing
+
+  Background:
+    Given I Visit "/"
+    And I Add "buy some cheese"
+    And I Add "feed the cat"
+    And I Add "book a doctors appointment"
+    And I Tick the Todo "feed the cat"
+
+  @fixme
+  Scenario: Showing active todos
+    When I Click the Link "Active"
+    Then I should See "buy some cheese"
+    And I should See "book a doctors appointment"
+    But I should Not See "feed the cat"
+
+  @fixme
+  Scenario: Showing completed todos
+    When I Click the Link "Completed"
+    Then I should See "feed the cat"
+    But I should Not See "buy some cheese"
+
+  @fixme
+  Scenario: Showing all todos
+    When I Click the Link "Active"
+    And I Click the Link "Completed"
+    And I Click the Link "All"
+    Then I should See "buy some cheese"
+    And I should See "feed the cat"
+
+  @fixme
+  Scenario: The back button
+    When I Click the Link "All"
+    And I Click the Link "Active"
+    And I Click the Link "Completed"
+    Then I should Not See "buy some cheese"
+    When I go Back
+    Then I should See "buy some cheese"
+    But I should Not See "feed the cat"
+    When I go Back
+    Then I should See "feed the cat"
+
+  @fixme
+  Scenario: The current filter is highlighted
+    When I Click the Link "Active"
+    Then I should be At "/#/active"
+    When I Click the Link "Completed"
+    Then I should be At "/#/completed"

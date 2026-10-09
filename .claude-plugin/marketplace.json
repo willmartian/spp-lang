@@ -1,0 +1,12 @@
+{
+  "name": "spp-lang",
+  "description": "Claude Code plugins for Spec++, the Gherkin you can run without step definitions.",
+  "owner": { "name": "Will Martin" },
+  "plugins": [
+    {
+      "name": "spp-lang",
+      "source": "./editors/claude",
+      "description": "Helps Claude write Spec++ (.spp) files."
+    }
+  ]
+}

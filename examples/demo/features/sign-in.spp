@@ -1,0 +1,29 @@
+Feature: Signing in
+
+  Background:
+    Given I Visit "/"
+
+  Scenario: The right password
+    When I Fill the Field "Email" with "will@example.com"
+    And I Fill the Field "Password" with "hunter2"
+    And I Click the Button "Sign in"
+    Then I should be At "/list.html"
+    And I should See the Heading "Welcome back"
+
+  Scenario: The wrong password
+    When I Fill in the form:
+      | Email    | will@example.com |
+      | Password | letmein          |
+    And I Click the Button "Sign in"
+    Then I should See "Wrong email or password"
+    And I should Not be At "/list.html"
+
+  Scenario Outline: Both fields are needed
+    When I Fill the Field "<filled>" with "something"
+    And I Click the Button "Sign in"
+    Then the Field "<missing>" should be Focused
+
+    Examples:
+      | filled   | missing  |
+      | Email    | Password |
+      | Password | Email    |

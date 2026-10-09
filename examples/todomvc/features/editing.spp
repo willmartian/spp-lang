@@ -1,0 +1,44 @@
+Feature: Editing
+
+  Background:
+    Given I Visit "/"
+    And I Add "buy some cheese"
+    And I Add "feed the cat"
+    And I Add "book a doctors appointment"
+
+  @fixme
+  Scenario: Other controls hide while editing
+    When I Double-click the Todo "feed the cat"
+    Then the Checkbox "Toggle Todo" Within the Todo "feed the cat" should be Hidden
+    And the Text "feed the cat" should be Hidden
+
+  @fixme
+  Scenario: Saving on blur
+    When I Double-click the Todo "feed the cat"
+    And I Fill the Editor with "buy some sausages"
+    And I Click the Heading "todos"
+    Then I should See "buy some sausages"
+    But I should Not See "feed the cat"
+
+  @fixme
+  Scenario: Trimming what's entered
+    When I Double-click the Todo "feed the cat"
+    And I Fill the Editor with "    buy some sausages    "
+    And I Press "Enter" on the Editor
+    Then I should See the Text "buy some sausages"
+
+  @fixme
+  Scenario: An empty todo is removed
+    When I Double-click the Todo "feed the cat"
+    And I Clear the Editor
+    And I Press "Enter" on the Editor
+    Then I should Not See "feed the cat"
+    And I should See "2 items left"
+
+  @fixme
+  Scenario: Escape cancels
+    When I Double-click the Todo "feed the cat"
+    And I Fill the Editor with "buy some sausages"
+    And I Press "Escape" on the Editor
+    Then I should See "feed the cat"
+    But I should Not See "buy some sausages"

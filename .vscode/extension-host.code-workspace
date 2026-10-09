@@ -1,0 +1,6 @@
+{
+  // What "Run Spec++ extension" opens: this repo, as a workspace file rather
+  // than a folder, since VS Code won't open a folder that's already open in
+  // another window, and the window you launch from has it open.
+  "folders": [{ "path": ".." }]
+}

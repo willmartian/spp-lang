@@ -1,0 +1,5 @@
+#!/bin/sh
+# Node inside this repo's dev shell. VS Code runs the language server from
+# source with it (see .vscode/settings.json), since that needs a Node that
+# runs TypeScript, however VS Code was started.
+exec nix develop "$(dirname "$0")/.." --quiet -c node "$@"

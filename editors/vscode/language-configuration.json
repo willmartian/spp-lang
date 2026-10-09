@@ -1,0 +1,18 @@
+{
+  "comments": {
+    "lineComment": "#"
+  },
+  "autoClosingPairs": [{ "open": "\"", "close": "\"", "notIn": ["string"] }],
+  "surroundingPairs": [["\"", "\""]],
+  "onEnterRules": [
+    {
+      "beforeText": ":\\s*$",
+      "action": { "indent": "indent" }
+    },
+    {
+      "beforeText": "^\\s*Define:",
+      "action": { "indent": "indent" }
+    }
+  ],
+  "wordPattern": "[A-Za-z0-9\\-?!'+/*>=<^.]+"
+}

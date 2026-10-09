@@ -1,0 +1,7 @@
+{
+  "spp": {
+    "command": "npx",
+    "args": ["--no-install", "spp-lang", "lsp"],
+    "extensionToLanguage": { ".spp": "spp", ".md": "markdown" }
+  }
+}

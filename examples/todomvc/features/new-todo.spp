@@ -1,0 +1,22 @@
+Feature: New todo
+
+  Background:
+    Given I Visit "/"
+
+  Scenario: Adding todos
+    When I Add "buy some cheese"
+    Then I should See "buy some cheese"
+    When I Add "feed the cat"
+    Then I should See "buy some cheese"
+    And I should See "feed the cat"
+
+  Scenario: The field clears once a todo is added
+    When I Add "buy some cheese"
+    Then the New-todo should be Empty
+
+  Scenario: New todos go at the bottom
+    When I Add "buy some cheese"
+    And I Add "feed the cat"
+    And I Add "book a doctors appointment"
+    Then I should See "3 items left"
+    And the TestId "todo-count" should Read "3 items left"

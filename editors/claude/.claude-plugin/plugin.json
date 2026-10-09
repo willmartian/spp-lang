@@ -1,0 +1,8 @@
+{
+  "name": "spp-lang",
+  "displayName": "Spec++",
+  "version": "0.1.0",
+  "description": "Helps Claude write Spec++ (.spp) files: the language's rules, the project's own words from `spp-lang dictionary`, and checking with `spp-lang check` after every edit.",
+  "author": { "name": "Will Martin" },
+  "keywords": ["gherkin", "spec++", "bdd", "playwright", "testing"]
+}

@@ -1,0 +1,101 @@
+{
+  "name": "spp-vscode",
+  "displayName": "Spec++",
+  "description": "Specs that run. Written by agents, read by people. Checking, hover, completion and highlighting for Spec++, in .spp files and Markdown.",
+  "version": "0.1.0",
+  "publisher": "spp-lang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willmartian/spp-lang.git",
+    "directory": "editors/vscode"
+  },
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "workspaceContains:**/*.spp"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "In an untrusted workspace, Spec++ uses the language server it ships with, never the workspace's, and doesn't load the workspace's Playwright config."
+    }
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "spp",
+        "aliases": [
+          "spp"
+        ],
+        "extensions": [
+          ".spp"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "spp",
+        "scopeName": "source.spp",
+        "path": "./syntaxes/spp.tmLanguage.json"
+      },
+      {
+        "scopeName": "markdown.spp.codeblock",
+        "path": "./syntaxes/spp.markdown.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.spp": "spp"
+        }
+      }
+    ],
+    "configuration": {
+      "title": "Spec++",
+      "properties": {
+        "spp.path": {
+          "type": "string",
+          "default": "",
+          "scope": "resource",
+          "description": "The spp-lang whose language server to use: a path to its bin/spp-lang.js, relative to the workspace folder. Empty uses the workspace's node_modules/spp-lang, or else the one this extension ships with."
+        },
+        "spp.node": {
+          "type": "string",
+          "default": "node",
+          "scope": "resource",
+          "description": "The Node.js to run the workspace's spp-lang language server with: a command, or a path relative to the workspace folder, like a script that sets up the environment first."
+        }
+      }
+    },
+    "configurationDefaults": {
+      "[spp]": {
+        "editor.semanticHighlighting.enabled": true
+      }
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node test/run.mjs",
+    "package": "vsce package --no-dependencies",
+    "vscode:prepublish": "npm run build"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^10.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/vscode": "~1.100.0",
+    "@vscode/test-electron": "^3.1.0",
+    "@vscode/vsce": "^4.0.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

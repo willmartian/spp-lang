@@ -1,0 +1,12 @@
+# The demo's words, for the scenarios that must fail.
+
+Define: Signed-in
+  Visit "/"
+  Fill the Field "Email" with "will@example.com"
+  Fill the Field "Password" with "hunter2"
+  Click the Button "Sign in"
+  See the Heading "Welcome back"
+
+Define: Add Text (Item)
+  Fill the Field "Item" with Item
+  Click the Button "Add"

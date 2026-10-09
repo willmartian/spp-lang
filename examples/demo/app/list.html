@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Groceries</title>
+<main>
+  <h1>Welcome back</h1>
+  <form>
+    <label>Item <input name="item"></label>
+    <button type="submit">Add</button>
+  </form>
+  <table>
+    <thead><tr><th>Item</th><th>Bought</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+</main>
+<script>
+  const form = document.querySelector('form')
+  const rows = document.querySelector('tbody')
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const name = form.item.value.trim()
+    if (!name) return
+    const row = document.createElement('tr')
+    row.innerHTML = `<td></td><td><input type="checkbox" aria-label="Bought"></td><td><button>Remove</button></td>`
+    row.cells[0].textContent = name
+    row.querySelector('button').onclick = () => row.remove()
+    rows.append(row)
+    form.reset()
+  })
+</script>

@@ -1,0 +1,67 @@
+{
+  "name": "spp-lang",
+  "version": "0.1.0",
+  "description": "Specs that run. Written by agents, read by people.",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    }
+  },
+  "bin": {
+    "spp-lang": "dist/bin/spp-lang.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc",
+    "lint": "biome check",
+    "format": "biome check --write",
+    "test": "node --test 'test/**/*.test.ts'",
+    "test:e2e": "playwright test",
+    "demo": "node examples/demo/serve.ts",
+    "prepack": "npm run build",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "gherkin",
+    "cucumber",
+    "bdd",
+    "playwright",
+    "testing-library",
+    "cognate"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willmartian/spp-lang.git"
+  },
+  "dependencies": {
+    "@cucumber/gherkin": "^42.0.1",
+    "@cucumber/messages": "^34.2.1",
+    "commander": "^15.0.0",
+    "vscode-languageserver": "^10.1.2",
+    "vscode-languageserver-textdocument": "^1.0.15"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.63.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.3",
+    "husky": "^9.1.7",
+    "typescript": "^7.0.2"
+  }
+}

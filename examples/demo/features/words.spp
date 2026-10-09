@@ -1,0 +1,9 @@
+# Words every feature can use. This is the whole of the "glue":
+# no JavaScript and no regular expressions.
+
+Define: Signed-in
+  Visit "/"
+  Fill the Field "Email" with "will@example.com"
+  Fill the Field "Password" with "hunter2"
+  Click the Button "Sign in"
+  See the Heading "Welcome back"

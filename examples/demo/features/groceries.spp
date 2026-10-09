@@ -1,0 +1,26 @@
+# Add "Milk": Add takes some text, called Item in its body.
+Define: Add Text (Item)
+  Fill the Field "Item" with Item
+  Click the Button "Add"
+
+Feature: The grocery list
+
+  Background:
+    Given I am Signed-in
+
+  Scenario: Adding things
+    When I Add "Milk" to the list
+    Then I should See the Cell "Milk"
+    And the Field "Item" should be Empty again
+
+  Scenario: Ticking things off
+    Given I Add "Eggs" to the list
+    When I Check the Checkbox "Bought" Within the Row Containing "Eggs"
+    Then the Checkbox "Bought" Within the Row Containing "Eggs" should be Checked
+
+  Scenario: Changing my mind
+    Given I Add "Kale"
+    And I Add "Bread"
+    When I Click the Button "Remove" Within the Row Containing "Kale"
+    Then I should Not See the Cell "Kale"
+    But I should still See the Cell "Bread"

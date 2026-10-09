@@ -1,0 +1,35 @@
+Feature: Item
+
+  Background:
+    Given I Visit "/"
+
+  @fixme
+  Scenario: Marking todos as complete
+    Given I Add "buy some cheese"
+    And I Add "feed the cat"
+    When I Tick the Todo "buy some cheese"
+    Then the Checkbox "Toggle Todo" Within the Todo "buy some cheese" should be Checked
+    But the Checkbox "Toggle Todo" Within the Todo "feed the cat" should Not be Checked
+    When I Tick the Todo "feed the cat"
+    Then the Checkbox "Toggle Todo" Within the Todo "feed the cat" should be Checked
+
+  @fixme
+  Scenario: Un-marking a todo
+    Given I Add "buy some cheese"
+    And I Add "feed the cat"
+    When I Tick the Todo "buy some cheese"
+    And I Untick the Todo "buy some cheese"
+    Then the Checkbox "Toggle Todo" Within the Todo "buy some cheese" should Not be Checked
+    And I should See "2 items left"
+
+  @fixme
+  Scenario: Editing a todo
+    Given I Add "buy some cheese"
+    And I Add "feed the cat"
+    And I Add "book a doctors appointment"
+    When I Double-click the Todo "feed the cat"
+    Then the Editor should have the Value "feed the cat"
+    When I Fill the Editor with "buy some sausages"
+    And I Press "Enter" on the Editor
+    Then I should See "buy some sausages"
+    But I should Not See "feed the cat"

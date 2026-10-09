@@ -1,0 +1,12 @@
+{
+  // What npm gets: Node won't strip types inside node_modules, so the package
+  // ships compiled JavaScript and declarations in dist/.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src", "bin"]
+}

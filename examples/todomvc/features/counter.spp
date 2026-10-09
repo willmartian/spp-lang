@@ -1,0 +1,8 @@
+Feature: Counter
+
+  Scenario: The count follows the todos
+    Given I Visit "/"
+    When I Add "buy some cheese"
+    Then I should See "1 item left"
+    When I Add "feed the cat"
+    Then I should See "2 items left"
